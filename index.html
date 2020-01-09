@@ -6,15 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script defer src="mine.js"></script>
     <title>Minesweeper Generator</title>
+    <link rel=stylesheet type="text/css" href="mine.css">
 </head>
 <body>
     <header>
         <h1>Minesweeper Generator</h1>
             <label for="cols">How many columns?</label>
-            <input type="number" name="cols" id="cols"/>
+            <input type="number" name="cols" id="cols" min=1 />
             <label for="rows">How many rows?</label>
-            <input type="number" name="rows" id="rows" />
+            <input type="number" name="rows" id="rows" min=1 />
+            <label for="rows">How many mines?</label>
+            <input type="number" name="mines" id="mines" min=1 />
             <button type="submit" name="submit" id="submit">Generate</button>
     </header>
+
+    <main>
+        <div id="gridContainer"></div>
+    </main>
 </body>
 </html>

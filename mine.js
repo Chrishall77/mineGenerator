@@ -14,6 +14,7 @@
         let currentMines = mines.value;
         generateGrid(currentRows, currentCols);
         layMines(currentRows, currentCols, currentMines);
+        countMines(currentRows, currentCols);
     })
 
     //clear existing grid
@@ -28,10 +29,14 @@
               cell.className = "grid";
               cell.innerHTML = "";
               cell.setAttribute("mine", "false");
+              cell.setAttribute("checked", "false");
           }
         }   
     };
 
+    //randomly generate co-ordinates until mines remaining is 0
+    //if mines are higher than total squares then the number of mines is amended to 1 less than locations
+    //sets mine attribute for count function to use
     function layMines(r, c, m) {
         let locations = r * c;
         let rowMine = 0;
@@ -50,6 +55,30 @@
             }
         }
     }
+
+    //outer loop traverses entire rows
+    //inner loop traverses all columns within
+    //set cell - check its mine attribute if false then proceed
+    //check the adjacent cells counting all 'true' mine atttributes
+    function countMines(r, c) {
+        for (let currentRow = 0; currentRow < r; currentRow++) {
+            for (let currentCell = 0; currentCell < c; currentCell++) {
+                let mineCount=0;
+                let cell = gridContainer.rows[currentRow].cells[currentCell];
+                if(cell.getAttribute("mine") == "false"){
+                    let cellRow = cell.parentNode.rowIndex;
+                    let cellCol = cell.cellIndex;
+                    for (let adjacentRow = Math.max( cellRow - 1,0) ; adjacentRow <= Math.min( cellRow + 1, r-1) ; adjacentRow++)  {
+                        for(let adjacentCell = Math.max( cellCol - 1, 0 ); adjacentCell <= Math.min( cellCol + 1, c-1 ); adjacentCell++ ) {
+                            if (gridContainer.rows[adjacentRow].cells[adjacentCell].getAttribute("mine")=="true") mineCount++;
+                            mineCount === 0? null : cell.innerHTML = mineCount;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
 
     //generate a random integer below the max permissable value
     function generateRandom(max) {

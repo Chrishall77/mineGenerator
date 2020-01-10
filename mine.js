@@ -31,13 +31,27 @@
         }   
     };
 
-<<<<<<< HEAD
-    
+    function layMines(r, c, m) {
+        let locations = r * c;
+        let rowMine = 0;
+        let colMine = 0;
+        let cell = 0;
+        let mines = m >= locations ? locations - 1 : m;
+        for (let i = 0; i < mines; i++) {
+            rowMine = generateRandom(r);
+            colMine = generateRandom(c);
+            cell = gridContainer.rows[rowMine].cells[colMine];
+            cell.innerHTML="(O)"
+        }    
+    }
 
-=======
+    //generate a random integer below the max permissable value
+    function generateRandom(max) {
+        return Math.floor( Math.random() * (max) );
+    }
+
    
     //removes children from gridContainer whilst children exist
->>>>>>> master
     function clearGrid() {
         let element = document.getElementById("gridContainer");
         while (element.firstChild) {

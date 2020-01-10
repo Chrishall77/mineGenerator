@@ -27,6 +27,7 @@
               let cell = row.insertCell(); 
               cell.className = "grid";
               cell.innerHTML = "";
+              cell.setAttribute("mine", "false");
           }
         }   
     };
@@ -37,12 +38,17 @@
         let colMine = 0;
         let cell = 0;
         let mines = m >= locations ? locations - 1 : m;
-        for (let i = 0; i < mines; i++) {
+        let minesRemaining = mines;
+        while (minesRemaining > 0) {
             rowMine = generateRandom(r);
             colMine = generateRandom(c);
             cell = gridContainer.rows[rowMine].cells[colMine];
-            cell.innerHTML="(O)"
-        }    
+            if(cell.getAttribute("mine") == "false"){
+                cell.innerHTML="(O)";
+                cell.setAttribute("mine", "true");
+                minesRemaining = minesRemaining - 1;
+            }
+        }
     }
 
     //generate a random integer below the max permissable value

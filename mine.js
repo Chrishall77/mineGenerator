@@ -12,6 +12,7 @@
         let currentCols = cols.value;
         let currentMines = mines.value;
         generateGrid(currentRows, currentCols);
+        layMines(currentRows, currentCols, currentMines);
     })
 
     function generateGrid(r, c) {
@@ -27,6 +28,8 @@
           gridContainer.appendChild(row); 
         }   
     };
+
+    
 
     function clearGrid() {
         let element = document.getElementById("gridContainer");

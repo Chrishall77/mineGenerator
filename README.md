@@ -10,7 +10,7 @@ I reasoned on this approach as it felt within my skill set and I have been using
 
 ## How I approached the problem
 
-I had a few goes on Minesweeper to review the basic play-flow. From this I sketched out on paper some very rudimentary calculations that all revolved around dynamically generating a grid using the HTML DOM elements - specifically using DIVs. I considered three main milestones:
+I had a few goes on Minesweeper to review the basic play-flow. From this I sketched out on paper some very rudimentary calculations that all revolved around dynamically generating a grid using the HTML DOM elements - specifically using DIVs. I considered four milestones:
 
 1. Creating the user interface
 2. Dynamically generating the grid.
